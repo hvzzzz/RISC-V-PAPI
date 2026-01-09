@@ -1,0 +1,23 @@
+PACKAGE_TARNAME = papi
+prefix = /usr/local
+exec_prefix = ${prefix}
+datarootdir = ${prefix}/share
+datadir = ${datarootdir}/${PACKAGE_TARNAME}
+testlibdir = $(datadir)/testlib
+validationlibdir = $(datadir)/validation_tests
+DATADIR = $(DESTDIR)$(datadir)
+INCLUDE = -I. -I${prefix}/include -I$(testlibdir) -I$(validationlibdir)
+LIBDIR  = ${exec_prefix}/lib
+LIBRARY = libpapi.a
+SHLIB   = libpapi.so.7.0.1.0
+STATIC  = 
+PAPILIB = ../$(LIBRARY)
+TESTLIB = $(testlibdir)/libtestlib.a
+LDFLAGS =   
+CC	= riscv64-linux-gnu-gcc
+MPICC	= mpicc
+NO_MPI_TESTS	= yes
+F77	= riscv64-linux-gnu-gfortran
+CC_R	= $(CC) -pthread
+CFLAGS	=  -g -Wextra  -Wall -DPAPI_NUM_COMP=2 -O1
+OMPCFLGS = -fopenmp
